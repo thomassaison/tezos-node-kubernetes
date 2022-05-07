@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tezos-node-deployment
+  labels:
+    app: tezos-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tezos-node
+  template:
+    metadata:
+      labels:
+        app: tezos-node
+    spec:
+      containers:
+      - name: tezos-node
+        image: totar/tezos-node:ithacanet
+        env:
+          - name: SNAPSHOT
+            value: https://snapshots-tezos.giganode.io/snapshots/testnet_20220507-000455_BKzx7aJi684BEjsTz7R9SVWQxUUjm3No1uZfUkXwhkZx7yMGzkG.rolling
+        ports:
+        - containerPort: 8732

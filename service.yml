@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tezos-node-service
+spec:
+  selector:
+    app: tezos-node
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8732
+      targetPort: 8732
